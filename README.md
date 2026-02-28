@@ -30,16 +30,18 @@
 
 ---
 
-## 🛠 Tech Stack
+## 🛠️ Tech Stack
 
-| Category      | Technology Used |
-|--------------|-----------------|
-| **Frontend** | React (Vite)    |
-| **Styling** | Tailwind CSS    |
-| **Routing** | React Router DOM|
-| **API Client**| Axios           |
-| **State** | Context API     |
-| **Auth** | JWT             |
+| Category   | Technology Used           |
+|-----------|---------------------------|
+| Frontend  | React (Vite)              |
+| Styling   | Tailwind CSS              |
+| Routing   | React Router DOM          |
+| API Client| Axios                     |
+| State     | Context API               |
+| Auth      | JWT                       |
+| Charts    | Recharts                  |
+| Icons     | Lucide React              |
 
 ---
 
