@@ -7,7 +7,6 @@ export default function ProductList({ products = [] }) {
       className="relative overflow-hidden rounded-[32px] 
         bg-white/40 backdrop-blur-2xl border border-white/60 
         shadow-[0_20px_50px_rgba(0,0,0,0.04)]">
-      {/* Header Section */}
       <div className="px-8 pt-8 pb-2">
         <h3 className="text-xl font-bold text-gray-900 tracking-tight">
           Product Overview

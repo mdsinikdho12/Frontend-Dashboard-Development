@@ -105,9 +105,6 @@ export default function Dashboard() {
     fetchDashboardData();
   }, []);
 
-  console.log("state", stats);
-  console.log("users", user);
-
   return (
     <>
       <div

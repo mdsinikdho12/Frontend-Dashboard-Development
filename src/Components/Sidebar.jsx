@@ -1,6 +1,18 @@
 import { X, Smartphone } from "lucide-react";
+import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
 
 export default function Sidebar({ navItems = [], genItems = [], onClose }) {
+  const navigate = useNavigate();
+  const { logout } = useContext(AuthContext);
+  const handleClick = (label) => {
+    if (label === "Logout") {
+      logout();
+      navigate("/", { replace: true });
+    }
+  };
+
   return (
     <div
       className="flex flex-col h-full rounded-2xl w-[220px] px-4 py-6
@@ -68,6 +80,7 @@ export default function Sidebar({ navItems = [], genItems = [], onClose }) {
         {genItems.map(({ icon: Icon, label }) => (
           <div
             key={label}
+            onClick={() => handleClick(label)}
             className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl cursor-pointer hover:bg-[#1A4D2E] hover:text-white transition-all group">
             <Icon
               size={16}
