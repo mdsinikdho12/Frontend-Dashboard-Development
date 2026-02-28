@@ -20,10 +20,11 @@ import AnalyticsChart from "../Components/Projectanalytics";
 import ProductCardGrid from "../Components/Products";
 
 import TeamCollaboration from "./../Components/Teamcollaboration";
+import DashBoardHeading from "../Components/DashBoardHeading";
 
 const NAV_ITEMS = [
   { icon: LayoutDashboard, label: "Dashboard", active: true, badge: null },
-
+  { icon: CheckSquare, label: "Tasks", active: false, badge: "12+" },
   { icon: Calendar, label: "Calendar", active: false, badge: null },
   { icon: BarChart2, label: "Analytics", active: false, badge: null },
   { icon: Users, label: "Team", active: false, badge: null },
@@ -37,7 +38,7 @@ const GEN_ITEMS = [
 
 export default function Dashboard() {
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState([]);
   const [stats, setStats] = useState([]);
   const [products, setProducts] = useState([]);
   const [analyticsData, setAnalyticsData] = useState([]);
@@ -109,13 +110,6 @@ export default function Dashboard() {
 
   return (
     <>
-      <style>{`
-        * { box-sizing: border-box; }
-        body { margin: 0; }
-        ::-webkit-scrollbar { width: 4px; }
-        ::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 99px; }
-      `}</style>
-
       <div
         className="flex h-screen overflow-hidden bg-white"
         style={{ fontFamily: "'DM Sans', sans-serif" }}>
@@ -144,24 +138,7 @@ export default function Dashboard() {
           <Topbar user={user} onMenuClick={() => setDrawerOpen(true)} />
 
           <div className="flex-1 bg-[#F7F7F7] rounded-2xl mt-3 overflow-y-auto px-4 md:px-6 py-5">
-            <div className="flex flex-wrap items-start justify-between gap-3 mb-5">
-              <div>
-                <h1 className="text-2xl md:text-[28px] font-medium font-lato text-gray-900 tracking-tight leading-none">
-                  Dashboard
-                </h1>
-                <p className="text-sm text-gray-400 mt-1.5">
-                  Plan, prioritize, and accomplish your tasks with ease.
-                </p>
-              </div>
-              <div className="flex gap-2">
-                <button className="flex items-center gap-1.5 bg-[#1B4332] hover:bg-[#14532d] text-white text-sm font-semibold px-5 py-2.5 rounded-full transition-colors shadow-sm">
-                  <Plus size={15} /> Add Project
-                </button>
-                <button className="flex items-center gap-1.5 bg-white border border-gray-200 text-gray-800 text-sm font-semibold px-5 py-2.5 rounded-full hover:bg-gray-50 transition-colors">
-                  Import Data
-                </button>
-              </div>
-            </div>
+            <DashBoardHeading />
 
             <StatsRow stats={stats} />
 
