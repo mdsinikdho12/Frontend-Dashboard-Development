@@ -97,9 +97,12 @@ export default function Dashboard() {
         // console.log("tem data is ", team);
 
         // // Analytics
-        // const analyticsRes = await api.get("/api/analytics");
-        // const analytics = analyticsRes.data?.data || analyticsRes.data || [];
-        // setAnalyticsData(analytics);
+        const analyticsRes = await api.get("/api/analytics");
+
+        const analytics = analyticsRes.data?.data || analyticsRes.data || [];
+        console.log(analytics);
+
+        setAnalyticsData(analytics);
 
         // // Current User
         // const userRes = await api.get("/api/user/1");
@@ -174,6 +177,8 @@ export default function Dashboard() {
             </div>
 
             <StatsRow stats={stats} />
+            <AnalyticsChart data={analyticsData} />
+
             {/* <StatsRow stats={stats} /> 
 
 

@@ -1,14 +1,11 @@
 import { X, Smartphone } from "lucide-react";
 
-/**
- * Props:
- *  navItems  — array of { icon, label, active, badge }
- *  genItems  — array of { icon, label }
- *  onClose   — optional, shows X button when provided (mobile drawer)
- */
 export default function Sidebar({ navItems = [], genItems = [], onClose }) {
   return (
-    <div className="flex flex-col h-full rounded-2xl bg-[#F7F7F7] w-[220px] px-4 py-6">
+    <div
+      className="flex flex-col h-full rounded-2xl w-[220px] px-4 py-6
+      bg-white/20 backdrop-blur-xl border border-white/30
+      shadow-[0_8px_32px_rgba(0,0,0,0.08)] transition-all duration-500">
       {/* Logo */}
       <div className="flex items-center gap-2.5 mb-8">
         <div className="w-9 h-9 rounded-full border-2 border-[#1B4332] flex items-center justify-center">
@@ -20,8 +17,7 @@ export default function Sidebar({ navItems = [], genItems = [], onClose }) {
         {onClose && (
           <button
             onClick={onClose}
-            className="ml-auto text-gray-400 hover:text-gray-600 transition-colors"
-          >
+            className="ml-auto text-gray-400 hover:text-gray-600 transition-colors">
             <X size={16} />
           </button>
         )}
@@ -35,20 +31,26 @@ export default function Sidebar({ navItems = [], genItems = [], onClose }) {
         {navItems.map(({ icon: Icon, label, active, badge }) => (
           <div
             key={label}
-            className={`flex items-center gap-2.5 px-3 py-2.5 rounded-xl cursor-pointer select-none transition-all
+            className={`flex items-center gap-2.5 px-3 py-2.5 rounded-xl cursor-pointer select-none transition-all group
               ${
                 active
                   ? "bg-emerald-50 border-l-[3px] border-[#1B4332]"
-                  : "border-l-[3px] border-transparent hover:bg-gray-50"
-              }`}
-          >
+                  : "border-l-[3px] border-transparent hover:bg-[#1A4D2E] hover:text-white"
+              }`}>
             <Icon
               size={16}
-              className={active ? "text-[#1B4332]" : "text-gray-400"}
+              className={`transition-transform duration-500 group-hover:rotate-45 ${
+                active
+                  ? "text-[#1B4332]"
+                  : "text-gray-400 group-hover:text-white"
+              }`}
             />
             <span
-              className={`text-sm flex-1 ${active ? "text-[#1B4332] font-bold" : "text-gray-500 font-medium"}`}
-            >
+              className={`text-sm flex-1 transition-colors ${
+                active
+                  ? "text-[#1B4332] font-bold"
+                  : "text-gray-500 font-medium group-hover:text-white"
+              }`}>
               {label}
             </span>
             {badge && (
@@ -68,10 +70,14 @@ export default function Sidebar({ navItems = [], genItems = [], onClose }) {
         {genItems.map(({ icon: Icon, label }) => (
           <div
             key={label}
-            className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl cursor-pointer hover:bg-gray-50 transition-colors"
-          >
-            <Icon size={16} className="text-gray-400" />
-            <span className="text-sm text-gray-500 font-medium">{label}</span>
+            className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl cursor-pointer hover:bg-[#1A4D2E] hover:text-white transition-all group">
+            <Icon
+              size={16}
+              className="text-gray-400 group-hover:text-white transition-transform duration-500 group-hover:rotate-45"
+            />
+            <span className="text-sm text-gray-500 font-medium group-hover:text-white">
+              {label}
+            </span>
           </div>
         ))}
       </nav>
@@ -79,16 +85,16 @@ export default function Sidebar({ navItems = [], genItems = [], onClose }) {
       <div className="flex-1" />
 
       {/* Download card */}
-      <div className="relative bg-[#1A2E22] rounded-2xl p-4 mt-6 overflow-hidden">
-        <div className="absolute -right-5 -bottom-5 w-24 h-24 rounded-full bg-white/5" />
-        <div className="absolute -right-10 -bottom-10 w-36 h-36 rounded-full bg-white/5" />
+      <div className="relative bg-[#1A2E22]/90 backdrop-blur-md rounded-2xl p-4 mt-6 overflow-hidden shadow-lg">
+        <div className="absolute -right-5 -bottom-5 w-24 h-24 rounded-full bg-white/10" />
+        <div className="absolute -right-10 -bottom-10 w-36 h-36 rounded-full bg-white/10" />
         <Smartphone size={20} className="text-emerald-400 mb-2 relative z-10" />
         <p className="text-white text-sm font-bold leading-tight mb-1 relative z-10">
           Download our
           <br />
           Mobile App
         </p>
-        <p className="text-emerald-800 text-xs mb-3 relative z-10">
+        <p className="text-emerald-300 text-xs mb-3 relative z-10">
           Get easy in another way
         </p>
         <button className="w-full bg-[#1B4332] hover:bg-[#14532d] text-white text-xs font-semibold py-2 rounded-full transition-colors relative z-10">
