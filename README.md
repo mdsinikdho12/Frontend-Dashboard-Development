@@ -1,18 +1,56 @@
-# React + Vite
+# Frontend  Dashboard 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Donezo** is a modern, responsive task management dashboard built with **React (Vite)**. It features secure JWT authentication, protected routing, and dynamic data rendering via a REST API.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🖼️ Preview
 
-## React Compiler
+![Dashboard Preview](https://s6.imgcdn.dev/YScmYi.png)
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+---
 
-Note: This will impact Vite dev & build performances.
+## 🔗 Links
 
-## Expanding the ESLint configuration
+- 🌐 **Live Site:** [View Demo](https://frontend-dashboard-development.vercel.app/)
+- 📂 **GitHub Repo:** [Source Code](https://github.com/mdsinikdho12/Frontend-Dashboard-Development/)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## ✨ Features
+
+- 🔐 **JWT Based Authentication**: Secure login and session handling.
+- 🛡️ **Protected Routes**: Dashboard access restricted to authenticated users.
+- 💾 **Persistent Login**: Uses `LocalStorage` to keep users logged in.
+- 📊 **Dynamic Data**: Real-time data fetching from REST API.
+- 🎨 **Dribbble Inspired UI**: Pixel-perfect design with Tailwind CSS.
+- 📱 **Fully Responsive**: Optimized for mobile, tablet, and desktop.
+- ⚡ **Smooth UX**: Hover effects and transitions for a premium feel.
+- 🔄 **Axios Interceptors**: Automated token handling for all API requests.
+
+---
+
+## 🛠 Tech Stack
+
+| Category      | Technology Used |
+|--------------|-----------------|
+| **Frontend** | React (Vite)    |
+| **Styling** | Tailwind CSS    |
+| **Routing** | React Router DOM|
+| **API Client**| Axios           |
+| **State** | Context API     |
+| **Auth** | JWT             |
+
+---
+
+## 📁 Project Structure
+
+```text
+src/
+├── components/      # Reusable UI components
+├── context/         # AuthContext for global state
+├── pages/           # Login & Dashboard pages
+├── routes/          # PrivateRoute logic
+├── services/        # API configuration & Auth services
+├── App.jsx          # Main App component
+└── main.jsx         # Entry point
