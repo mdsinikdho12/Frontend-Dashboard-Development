@@ -10,6 +10,7 @@ import {
   Settings,
   HelpCircle,
   LogOut,
+  User,
 } from "lucide-react";
 
 import Sidebar from "../Components/Sidebar";
@@ -18,9 +19,11 @@ import StatsRow from "../Components/Statsrow";
 import AnalyticsChart from "../Components/Projectanalytics";
 import ProductCardGrid from "../Components/Products";
 
+import TeamCollaboration from "./../Components/Teamcollaboration";
+
 const NAV_ITEMS = [
   { icon: LayoutDashboard, label: "Dashboard", active: true, badge: null },
-  { icon: CheckSquare, label: "Tasks", active: false, badge: "12+" },
+
   { icon: Calendar, label: "Calendar", active: false, badge: null },
   { icon: BarChart2, label: "Analytics", active: false, badge: null },
   { icon: Users, label: "Team", active: false, badge: null },
@@ -37,10 +40,7 @@ export default function Dashboard() {
   const [user, setUser] = useState({});
   const [stats, setStats] = useState([]);
   const [products, setProducts] = useState([]);
-  const [team, setTeam] = useState([]);
   const [analyticsData, setAnalyticsData] = useState([]);
-  const [reminder, setReminder] = useState({});
-  const [progress, setProgress] = useState({});
 
   useEffect(() => {
     const fetchDashboardData = async () => {
@@ -94,7 +94,6 @@ export default function Dashboard() {
         // // Current User
         const userRes = await api.get("/api/users");
         const userData = userRes.data?.data || userRes.data || {};
-        console.log("user Res", userRes);
 
         setUser(userData);
       } catch (err) {
@@ -106,7 +105,7 @@ export default function Dashboard() {
   }, []);
 
   console.log("state", stats);
-  console.log("project data ", products);
+  console.log("users", user);
 
   return (
     <>
@@ -141,12 +140,10 @@ export default function Dashboard() {
           </div>
         )}
 
-        {/* Main */}
         <div className="flex-1 flex flex-col overflow-hidden min-w-0 px-3 font-lato ">
           <Topbar user={user} onMenuClick={() => setDrawerOpen(true)} />
 
           <div className="flex-1 bg-[#F7F7F7] rounded-2xl mt-3 overflow-y-auto px-4 md:px-6 py-5">
-            {/* Page heading */}
             <div className="flex flex-wrap items-start justify-between gap-3 mb-5">
               <div>
                 <h1 className="text-2xl md:text-[28px] font-medium font-lato text-gray-900 tracking-tight leading-none">
@@ -173,11 +170,8 @@ export default function Dashboard() {
               <ProductCardGrid products={products} />
             </div>
 
-            {/* <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
-              <TeamCollaboration members={team} />
-              <ProjectProgress progress={progress} />
-              <TimeTracker initialSeconds={5048} />
-            </div> */}
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4"></div>
+            <TeamCollaboration members={user} />
           </div>
         </div>
       </div>
