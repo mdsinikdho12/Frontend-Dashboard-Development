@@ -6,14 +6,38 @@ const STATUS_CLS = {
   Pending: "bg-red-100 text-red-600",
 };
 
-/**
- * Props:
- *  members — array of { name, task, status, av, bg }
- *    av  — initials string e.g. "AD"
- *    bg  — tailwind bg class e.g. "bg-rose-300"
- *    status — "Completed" | "In Progress" | "Pending"
- */
-export default function TeamCollaboration({ members = [] }) {
+const defaultMembers = [
+  {
+    name: "Alexandra Deff",
+    task: "Github Project Repository",
+    status: "Completed",
+    bg: "bg-pink-400",
+    av: "AD",
+  },
+  {
+    name: "Edwin Adenike",
+    task: "Integrate User Authentication System",
+    status: "In Progress",
+    bg: "bg-orange-400",
+    av: "EA",
+  },
+  {
+    name: "Isaac Oluwatemilorun",
+    task: "Develop Search and Filter Functionality",
+    status: "Pending",
+    bg: "bg-blue-400",
+    av: "IO",
+  },
+  {
+    name: "David Oshodi",
+    task: "Responsive Layout for Homepage",
+    status: "In Progress",
+    bg: "bg-purple-400",
+    av: "DO",
+  },
+];
+
+export default function TeamCollaboration({ members = defaultMembers }) {
   return (
     <div className="bg-white rounded-2xl p-5 shadow-sm md:col-span-2 xl:col-span-1">
       <div className="flex justify-between items-center mb-4">
@@ -28,8 +52,7 @@ export default function TeamCollaboration({ members = [] }) {
           <div key={m.name} className="flex items-center gap-3">
             {/* Avatar */}
             <div
-              className={`w-9 h-9 rounded-full ${m.bg} flex items-center justify-center text-white text-xs font-bold shrink-0`}
-            >
+              className={`w-9 h-9 rounded-full ${m.bg} flex items-center justify-center text-white text-xs font-bold shrink-0`}>
               {m.av}
             </div>
 
@@ -46,8 +69,7 @@ export default function TeamCollaboration({ members = [] }) {
 
             {/* Status badge */}
             <span
-              className={`text-[11px] font-semibold px-2.5 py-1 rounded-full shrink-0 ${STATUS_CLS[m.status]}`}
-            >
+              className={`text-[11px] font-semibold px-2.5 py-1 rounded-full shrink-0 ${STATUS_CLS[m.status]}`}>
               {m.status}
             </span>
           </div>

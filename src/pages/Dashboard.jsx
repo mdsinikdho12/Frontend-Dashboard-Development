@@ -53,33 +53,58 @@ export default function Dashboard() {
         const overviewRes = await api.get("/api/overview");
 
         const overview = overviewRes.data?.data || overviewRes.data || {};
-        console.log("Overview API Response:", overviewRes);
-        console.log("Parsed Overview:", overview);
+        const statsArray = [
+          {
+            label: "Total Users",
+            value: overview.totalUsers?.toLocaleString(),
+            note: "All registered users",
+            dark: false,
+          },
+          {
+            label: "Active Users",
+            value: overview.activeUsers?.toLocaleString(),
+            note: "Currently active",
+            dark: false,
+          },
+          {
+            label: "Revenue",
+            value: `$${overview.revenue?.toLocaleString()}`,
+            note: "Total revenue",
+            dark: false,
+          },
+          {
+            label: "Growth",
+            value: `${overview.growth}%`,
+            note: "Growth rate",
+            dark: false,
+          },
+        ];
 
-        setStats(overview || []);
-        setReminder(overview.reminder || {});
-        setProgress(overview.progress || {});
+        setStats(statsArray);
 
-        // Projects
-        const projectsRes = await api.get("/api/products");
-        const projectsData = projectsRes.data?.data || projectsRes.data || [];
-        setProjects(projectsData);
+        // setReminder(overview.reminder || {});
+        // setProgress(overview.progress || {});
 
-        // Team
-        const teamRes = await api.get("/api/users");
-        const teamData = teamRes.data?.data || teamRes.data || [];
-        setTeam(teamData);
-        console.log("tem data is ", team);
+        // // Projects
+        // const projectsRes = await api.get("/api/products");
+        // const projectsData = projectsRes.data?.data || projectsRes.data || [];
+        // setProjects(projectsData);
 
-        // Analytics
-        const analyticsRes = await api.get("/api/analytics");
-        const analytics = analyticsRes.data?.data || analyticsRes.data || [];
-        setAnalyticsData(analytics);
+        // // Team
+        // const teamRes = await api.get("/api/users");
+        // const teamData = teamRes.data?.data || teamRes.data || [];
+        // setTeam(teamData);
+        // console.log("tem data is ", team);
 
-        // Current User
-        const userRes = await api.get("/api/user/1");
-        const userData = userRes.data?.data || userRes.data || {};
-        setUser(userData);
+        // // Analytics
+        // const analyticsRes = await api.get("/api/analytics");
+        // const analytics = analyticsRes.data?.data || analyticsRes.data || [];
+        // setAnalyticsData(analytics);
+
+        // // Current User
+        // const userRes = await api.get("/api/user/1");
+        // const userData = userRes.data?.data || userRes.data || {};
+        // setUser(userData);
       } catch (err) {
         console.error("Dashboard fetch error:", err);
       }
@@ -88,8 +113,7 @@ export default function Dashboard() {
     fetchDashboardData();
   }, []);
 
-  console.log(" ", stats);
-
+  console.log("state", stats);
   return (
     <>
       <style>{`
@@ -149,22 +173,23 @@ export default function Dashboard() {
               </div>
             </div>
 
-            {/* Stats row */}
-            {/* <StatsRow stats={stats} /> */}
+            <StatsRow stats={stats} />
+            {/* <StatsRow stats={stats} /> 
 
-            {/* Middle row */}
+
+            
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 mb-4">
-              {/* <AnalyticsChart analyticsData={analyticsData} /> */}
+               <AnalyticsChart analyticsData={analyticsData} /> 
               <Reminders reminder={reminder} />
               <ProjectList projects={projects} />
             </div>
 
-            {/* Bottom row */}
+            
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
               <TeamCollaboration members={team} />
               <ProjectProgress progress={progress} />
               <TimeTracker initialSeconds={5048} />
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

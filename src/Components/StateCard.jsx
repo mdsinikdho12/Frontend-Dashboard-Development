@@ -12,52 +12,53 @@ const StatCard = ({
   return (
     <div
       className={`
-      relative p-6 rounded-[32px] shadow-sm border border-gray-100 flex flex-col justify-between h-48 transition-all hover:shadow-md
-      ${isPrimary ? "bg-[#1A4D2E] text-white" : "bg-white text-[#1A1D1F]"}
-    `}
-    >
+        relative p-7 rounded-[28px] flex flex-col justify-between h-52
+        transition-all duration-500 ease-out cursor-pointer group
+
+        bg-white/20 backdrop-blur-xl border border-white/30
+        shadow-[0_8px_32px_rgba(0,0,0,0.08)]
+
+        hover:bg-white/30 hover:shadow-[0_12px_40px_rgba(0,0,0,0.15)]
+        hover:-translate-y-2
+      `}>
+      {/* Header */}
       <div className="flex justify-between items-start">
-        <h3
-          className={`text-lg font-medium opacity-90 ${isPrimary ? "text-white" : "text-gray-600"}`}
-        >
+        <h3 className="text-sm font-semibold tracking-wide uppercase opacity-70 group-hover:text-white/90 transition-colors">
           {title}
         </h3>
-        <div
-          className={`p-2 rounded-full border ${isPrimary ? "bg-white text-[#1A4D2E] border-transparent" : "bg-white text-gray-800 border-gray-200"}`}
-        >
-          <ArrowUpRight size={20} strokeWidth={2.5} />
+        <div className="p-2.5 rounded-2xl bg-white/40 backdrop-blur-md border border-white/30 text-[#1A4D2E] group-hover:bg-[#2D6A4F]/80 group-hover:text-white transition-all duration-300">
+          <ArrowUpRight size={18} strokeWidth={2.5} />
         </div>
       </div>
 
-      <div className="mt-2">
-        <span className="text-5xl font-bold tracking-tight leading-none">
+      {/* Value */}
+      <div className="mt-4">
+        <span className="text-5xl font-semibold tracking-tight text-[#1A1D1F] group-hover:text-white transition-colors">
           {value}
         </span>
       </div>
 
-      <div className="mt-auto flex items-center gap-2">
+      {/* Trend / Status */}
+      <div className="mt-6 flex items-center gap-3">
         {trendValue ? (
-          <div className="flex items-center gap-2">
-            <span
-              className={`
-              text-[10px] px-2 py-0.5 rounded-lg font-bold flex items-center gap-0.5
-              ${isPrimary ? "bg-white/20 text-white" : "bg-[#F1F8F4] text-[#2D7A4D] border border-[#E3F2E9]"}
-            `}
-            >
-              {trendValue} <span className="text-[8px]">▲</span>
-            </span>
-            <span
-              className={`text-xs font-medium opacity-80 ${isPrimary ? "text-white" : "text-gray-500"}`}
-            >
+          <>
+            <div className="px-2.5 py-1 rounded-full bg-white/30 backdrop-blur-sm text-[#2D7A4D] text-[11px] font-bold flex items-center gap-1 group-hover:bg-white/20 group-hover:text-white transition-colors">
+              {trendValue}
+              <span className="text-[10px]">▲</span>
+            </div>
+            <span className="text-xs font-medium text-[#12dc00] group-hover:text-white/70 transition-colors">
               {trendText}
             </span>
-          </div>
+          </>
         ) : (
-          <span className="text-xs font-medium text-gray-400">
+          <span className="text-xs font-medium text-gray-400 group-hover:text-white/60 transition-colors">
             {statusText}
           </span>
         )}
       </div>
+
+      {/* Glassy Overlay */}
+      <div className="absolute inset-0 rounded-[28px] ring-1 ring-inset ring-white/40 group-hover:ring-white/20 pointer-events-none" />
     </div>
   );
 };
