@@ -6,7 +6,6 @@ export default function Sidebar({ navItems = [], genItems = [], onClose }) {
       className="flex flex-col h-full rounded-2xl w-[220px] px-4 py-6
       bg-white/20 backdrop-blur-xl border border-white/30
       shadow-[0_8px_32px_rgba(0,0,0,0.08)] transition-all duration-500">
-      {/* Logo */}
       <div className="flex items-center gap-2.5 mb-8">
         <div className="w-9 h-9 rounded-full border-2 border-[#1B4332] flex items-center justify-center">
           <div className="w-4 h-4 rounded-full bg-[#1B4332] opacity-70" />
@@ -62,7 +61,6 @@ export default function Sidebar({ navItems = [], genItems = [], onClose }) {
         ))}
       </nav>
 
-      {/* General nav */}
       <p className="text-[10px] text-gray-400 font-bold tracking-widest mt-6 mb-2 px-1">
         GENERAL
       </p>
@@ -83,24 +81,6 @@ export default function Sidebar({ navItems = [], genItems = [], onClose }) {
       </nav>
 
       <div className="flex-1" />
-
-      {/* Download card */}
-      <div className="relative bg-[#1A2E22]/90 backdrop-blur-md rounded-2xl p-4 mt-6 overflow-hidden shadow-lg">
-        <div className="absolute -right-5 -bottom-5 w-24 h-24 rounded-full bg-white/10" />
-        <div className="absolute -right-10 -bottom-10 w-36 h-36 rounded-full bg-white/10" />
-        <Smartphone size={20} className="text-emerald-400 mb-2 relative z-10" />
-        <p className="text-white text-sm font-bold leading-tight mb-1 relative z-10">
-          Download our
-          <br />
-          Mobile App
-        </p>
-        <p className="text-emerald-300 text-xs mb-3 relative z-10">
-          Get easy in another way
-        </p>
-        <button className="w-full bg-[#1B4332] hover:bg-[#14532d] text-white text-xs font-semibold py-2 rounded-full transition-colors relative z-10">
-          Download
-        </button>
-      </div>
     </div>
   );
 }

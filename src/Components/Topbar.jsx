@@ -1,14 +1,9 @@
 import { Search, Mail, Bell, Menu } from "lucide-react";
 
-/**
- * Props:
- *  user        — { name, email }
- *  onMenuClick — opens mobile sidebar drawer
- */
 export default function Topbar({ user = {}, onMenuClick }) {
   return (
     <header className="bg-[#F7F7F7] border-b rounded-[15px] border-gray-100 px-4 md:px-6 py-3 mt-3 flex items-center gap-3 shrink-0">
-      {/* Hamburger — mobile only */}
+      {/* Hamburger  */}
       <button className="md:hidden text-gray-500" onClick={onMenuClick}>
         <Menu size={22} />
       </button>
@@ -37,12 +32,21 @@ export default function Topbar({ user = {}, onMenuClick }) {
           <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full border-2 border-white" />
         </button>
 
-        {/* User avatar + info */}
-        <div className="flex items-center gap-2 pl-1">
-          <div className="w-9 h-9 rounded-full bg-gradient-to-br from-pink-300 to-rose-400 shrink-0" />
-          <div className="hidden sm:block leading-none">
-            <p className="text-sm font-bold text-gray-900">{user.name}</p>
-            <p className="text-xs text-gray-400 mt-0.5">{user.email}</p>
+        <div className="flex items-center gap-3 pl-1">
+          <img
+            src="https://img.icons8.com/color/48/administrator-male--v1.png"
+            alt="User Avatar"
+            className="w-9 h-9 rounded-full object-cover border border-gray-200 shadow-sm"
+          />
+
+          {/* User Info */}
+          <div className="hidden sm:block leading-tight">
+            <p className="text-sm font-semibold text-gray-900 tracking-tight">
+              {user.name}
+            </p>
+            <p className="text-xs text-gray-500 mt-0.5 truncate">
+              {user.email}
+            </p>
           </div>
         </div>
       </div>

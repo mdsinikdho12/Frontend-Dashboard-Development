@@ -16,11 +16,7 @@ import Sidebar from "../Components/Sidebar";
 import Topbar from "../Components/Topbar";
 import StatsRow from "../Components/Statsrow";
 import AnalyticsChart from "../Components/Projectanalytics";
-import Reminders from "../Components/Reminders";
-import ProjectList from "../Components/Projectlist";
-import TeamCollaboration from "../Components/Teamcollaboration";
-import ProjectProgress from "../Components/Projectprogress";
-import TimeTracker from "../Components/Timetracker";
+import ProductCardGrid from "../Components/Products";
 
 const NAV_ITEMS = [
   { icon: LayoutDashboard, label: "Dashboard", active: true, badge: null },
@@ -40,7 +36,7 @@ export default function Dashboard() {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [user, setUser] = useState({});
   const [stats, setStats] = useState([]);
-  const [projects, setProjects] = useState([]);
+  const [products, setProducts] = useState([]);
   const [team, setTeam] = useState([]);
   const [analyticsData, setAnalyticsData] = useState([]);
   const [reminder, setReminder] = useState({});
@@ -49,7 +45,7 @@ export default function Dashboard() {
   useEffect(() => {
     const fetchDashboardData = async () => {
       try {
-        // Overview
+        // overview
         const overviewRes = await api.get("/api/overview");
 
         const overview = overviewRes.data?.data || overviewRes.data || {};
@@ -82,19 +78,10 @@ export default function Dashboard() {
 
         setStats(statsArray);
 
-        // setReminder(overview.reminder || {});
-        // setProgress(overview.progress || {});
-
-        // // Projects
-        // const projectsRes = await api.get("/api/products");
-        // const projectsData = projectsRes.data?.data || projectsRes.data || [];
-        // setProjects(projectsData);
-
-        // // Team
-        // const teamRes = await api.get("/api/users");
-        // const teamData = teamRes.data?.data || teamRes.data || [];
-        // setTeam(teamData);
-        // console.log("tem data is ", team);
+        // Projects
+        const ProductsRes = await api.get("/api/products");
+        const projectsData = ProductsRes.data?.data || ProductsRes.data || [];
+        setProducts(projectsData);
 
         // // Analytics
         const analyticsRes = await api.get("/api/analytics");
@@ -105,9 +92,11 @@ export default function Dashboard() {
         setAnalyticsData(analytics);
 
         // // Current User
-        // const userRes = await api.get("/api/user/1");
-        // const userData = userRes.data?.data || userRes.data || {};
-        // setUser(userData);
+        const userRes = await api.get("/api/users");
+        const userData = userRes.data?.data || userRes.data || {};
+        console.log("user Res", userRes);
+
+        setUser(userData);
       } catch (err) {
         console.error("Dashboard fetch error:", err);
       }
@@ -117,6 +106,8 @@ export default function Dashboard() {
   }, []);
 
   console.log("state", stats);
+  console.log("project data ", products);
+
   return (
     <>
       <style>{`
@@ -129,7 +120,6 @@ export default function Dashboard() {
       <div
         className="flex h-screen overflow-hidden bg-white"
         style={{ fontFamily: "'DM Sans', sans-serif" }}>
-        {/* Desktop Sidebar */}
         <div className="hidden md:block border-r border-gray-100 shrink-0 overflow-y-auto">
           <Sidebar navItems={NAV_ITEMS} genItems={GEN_ITEMS} />
         </div>
@@ -177,20 +167,13 @@ export default function Dashboard() {
             </div>
 
             <StatsRow stats={stats} />
-            <AnalyticsChart data={analyticsData} />
 
-            {/* <StatsRow stats={stats} /> 
-
-
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 mb-4">
-               <AnalyticsChart analyticsData={analyticsData} /> 
-              <Reminders reminder={reminder} />
-              <ProjectList projects={projects} />
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-2 gap-4 mb-4">
+              <AnalyticsChart data={analyticsData} />
+              <ProductCardGrid products={products} />
             </div>
 
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+            {/* <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
               <TeamCollaboration members={team} />
               <ProjectProgress progress={progress} />
               <TimeTracker initialSeconds={5048} />
